@@ -29,7 +29,7 @@
       Protocol (SIP)</title>
 
     <author fullname="Dan York" initials="D." surname="York">
-        <organization abbrev="DisTel Research">DisTel Research</organization>
+        <organization abbrev="Individual">Individual</organization>
       <address>
         <postal>
           <street></street>
@@ -59,7 +59,7 @@
       </address>
     </author>
     
-    <date year="2015" />
+    <date year="2017" />
 
     <!-- Meta-data Declarations -->
 
@@ -79,10 +79,7 @@
        situations to carry 
        the ISUP Charge Number parameter for PSTN interconnection.</t>
        <t>NOTE: This document has been in development since 2008 under
-       the name draft-york-sipping-p-charge-info. This -05 document is
-       identical to draft-york-sipping-p-charge-info-15 except for 
-       edits to the text to indicate this is now for the DISPATCH
-       working group as the SIPPING working group no longer exists.</t>
+       the name draft-york-sipping-p-charge-info.</t>
     </abstract>
   </front>
 
@@ -150,7 +147,7 @@
     This document was originally prepared to comply with sections 4.1 and 4.2
     of the now obsolete RFC 3427.  It is noted that RFC 5727 specifically 
     deprecates new usage of "P-" headers, but P-Charge-Info has been in 
-    deployment for over seven years now and pre-dates RFC 5727. Given this, 
+    deployment since prior to 2008 and pre-dates RFC 5727. Given this, 
     the authors request that
     P-Charge-Info be admitted as a "grandfathered case" per section 4 of 
     RFC 5727.</t>
@@ -493,6 +490,8 @@
     <section anchor="Changes" title="Changes">
       <t>NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
       publication. Thank you.</t>
+      <t>Revision -06 updates the text for 2017 and changes Dan York's affiliation
+      to "Individual".</t>
       <t>Revision -05 is a refresh as -04 expired. Several small tweaks were
       also made to narrative text.</t>
       <t>Revision -04 is purely a refresh as -03 expired.</t>
