@@ -20,7 +20,7 @@
 <?rfc sortrefs="no" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="info" docName="draft-york-p-charge-info-01" ipr="trust200902">
+<rfc category="info" docName="draft-york-p-charge-info-02" ipr="trust200902">
 
   <!-- ***** FRONT MATTER ***** -->
 
@@ -89,7 +89,7 @@
 	ID") from the identity/number used for billing purposes.  This
 	document records the current usage of 'P-Charge-Info', a private
 	SIP header, to provide simple billing information and requests the
-	registration of this header with IANA as required by section 4.2 of
+	registration of this header with IANA as required by Section 4.2 of
 	 <xref target="RFC5727"/>.</t>
 	
 	<t>In a typical configuration, the identity of the caller, commonly
@@ -106,14 +106,9 @@
 	used for billing purposes by the network entities involved in
 	carrying the session.  </t>
 	<t>However, in some network configurations the "Caller ID" presented
-	to the receiving UA may be different from the number desired to be
+	to the receiving UA may be different from the number to be
 	used for billing purposes.</t>
 	
-	<t>For example, the "Caller ID" may not reflect the actual reality of 
-	the underlying network in terms of costs incurred on the PSTN. This 
-	may result in excessive charging of one carrier by another based on the
-	erroneous assumption that the call was originating from a different
-	point on the PSTN.</t>
 
 	<t>In this case, there exists a need for a way to pass 
 	an additional billing
@@ -135,80 +130,42 @@
 
     <section anchor="Purpose" title="Purpose of this Document">
     <t>This document has been prepared to document the existing deployed
-    usage of the P-Charge-Info header and to comply with section 4 of  
+    usage of the P-Charge-Info header and to comply with Section 4 of  
     <xref target="RFC5727"/> to register this header with IANA.
     This document was originally prepared to comply with sections 4.1 and 4.2
     of the now obsolete RFC 3427.  It is noted that RFC 5727 specifically 
     deprecates new usage of "P-" headers, but P-Charge-Info has been in 
     deployment since prior to 2007 and pre-dates RFC 5727. Given this, 
     the authors request that
-    P-Charge-Info be admitted as a "grandfathered case" per section 4 of 
+    P-Charge-Info be admitted as a "grandfathered case" per Section 4 of 
     RFC 5727.</t>
     </section>
 
-    <section anchor="ProblemExplanation" title="Examples of the Problem">
-    <section anchor="UseCase-BillingID" title="Use Case - Billing Identifier">
+    <section anchor="UseCases" title="Use Cases">
+    
     <t>The simplest use case for P-Charge-Info is an enterprise
     environment where each SIP endpoint has a direct number that is passed
-    by the enterprise SIP proxy across to a SIP proxy at a SIP Service
-    Provider who provides PSTN connectivity.  Rather than cause the SIP
-    Service Provider to have to track each individual direct number for
+    by the enterprise SIP proxy across to a SIP proxy at a SIP service
+    provider who provides PSTN connectivity.  Rather than cause the SIP
+    service provider to have to track each individual direct number for
     billing purposes, the enterprise SIP proxy sends in the
-    P-Charge-Info header a single billing identifier that the SIP Service
-    Provider uses for billing purposes.</t>
-    </section>
+    P-Charge-Info header a single billing identifier that the SIP service
+    provider uses for billing purposes.</t>
+   
 
-    <section anchor="UseCase-DistributedEnterprise" title="Use Case -
-    Distributed Enterprise">
-      <t>A second use case is by a large enterprise with a widely
-      distributed SIP network to designate the specific point at which PSTN
-      interconnection occurs.  Consider an enterprise with a work force and
-      offices distributed over a wide geographic area and linked by a
-      common internal network over which voice traffic is sent. Users
-      across the network may be able to contact each other directly via SIP
-      sessions, but there may only be a relatively few points in the
-      network where interconnection occurs to the PSTN.  Consider this
-      case:</t>
-      <t><list style="symbols">
-         <t>A branch office in Massachusetts has a series of IP phones that are
-	 connected via SIP to systems in the main office in Colorado and from
-	 there via SIP connections to the PSTN through a SIP service
-	 provider.</t>
-	 <t>The phones in the Massachusetts office have each been assigned a
-	 direct, local phone number in the US area code of 617.</t>
-	 <t>This local 617 phone number is presented to callers on the PSTN
-	 as the "Caller ID" based on its inclusion in the From and/or
-	 P-Asserted-Identity SIP headers.</t>
-	 <t>This local 617 phone number may also be used by the SIP service
-	 provider as the billing identifier and the call will be charged to
-	 the enterprise according to the relevant rates.</t>
-	 <t>However, the call actually connected to the PSTN via the SIP
-	 connection in the Colorado office where the USA area code is 303.
-	 </t>
-      </list>Rather than use the direct numbers of each SIP endpoint for
-      generating the billing information, the enterprise might choose to
-      instead pass the SIP URI of the PSTN interconnection point in the
-      P-Charge-Info header, either for simplicity or potentially to obtain
-      better rates from the SIP service provider.</t>
-
-    </section>
-    <section anchor="UseCase-HostedTelephonyProvider" title="Use Case -
-    Hosted Telephony Provider">
-      <t>Similar to the use case of a large enterprise, a hosted 
+      <t>As another example, a hosted 
       telephony provider or hosted voice application provider may have a 
       large SIP network with customers distributed over a very large
       geographic area using local market PSTN numbers but with only a very
       few actual PSTN interconnection points.</t>
 
-      <t>As with the branch office earlier, the customer may have all local
+      <t>The customer may have all local
       phone numbers yet outgoing calls are actually being routed across a
       SIP network and out specific PSTN gateways or across specific SIP
       connections to SIP service providers. The hosted provider may want to
-      pass a billing identifier to its SIP service providers again either
+      pass a billing identifier to its SIP service providers either
       for the purpose of simplicity in billing or to obtain better rates
       from the SIP service providers.</t>
-
-    </section>
 
     </section>
 
@@ -216,7 +173,7 @@
 
       <section anchor="P-Charging-Vector" title="P-Charging-Vector">
 
-        <t>P-Charging-Vector is defined in section 4.6 of <xref target="RFC3455"/>
+        <t>P-Charging-Vector is defined in Section 4.6 of <xref target="RFC3455"/>
     and used by the 3GPP to carry information related to
 	the charging of a session. There are, however, some differences 
 	in the semantics associated with P-Charging-Vector and
@@ -233,7 +190,7 @@
       </section>
 
       <section anchor="P-DCS-Billing-Info" title="P-DCS-Billing-Info">
-      <t>P-DCS-Billing-Info is defined in section 7 of <xref target="RFC3603"/>
+      <t>P-DCS-Billing-Info is defined in Section 7 of <xref target="RFC3603"/>
       and used for passing billing information between trusted 
       entities in the PacketCable Distributed Call Signaling Architecture.
       For many billing situations, particularly the very large-scale
@@ -250,12 +207,12 @@
       and may include a variety of additional parameters.</t>
 
       <t>While this may work well in many billing scenarios, there are
-      other billing scenarios that do not at all need this level of
+      other billing scenarios that do not need this level of
       complexity. In those simpler scenarios all that is needed is simply a
       number to use for billing. P-Charge-Info provides this simple
       solution for simple billing scenarios.</t>
 
-      <t>Additionally, section 7.3 of RFC 3603 mandates that a UA MUST create a
+      <t>Additionally, Section 7.3 of RFC 3603 mandates that a UA MUST create a
       Billing-Correlation-ID and insert this into the P-DCS-Billing-Info
       header (along with the other required information) sent in the initial 
       SIP INVITE. This again makes sense for the residential telephone
@@ -301,7 +258,7 @@
 	    <t>an application server generating billing information.</t>
 	 </list></t>
 
-              <t>P-Charge-Info is to be consumed by the SIP entity that
+              <t>P-Charge-Info is to be used by the SIP entity that
 	      provides billing services for a session. This could be an
 	      entity generating billing records or an entity interacting
 	      with another enitity generating billing records. Upon receipt
@@ -313,8 +270,8 @@
 	      <t>The P-Charge-Info header may be inserted by PSTN gateways
 	      or application servers
 	      acting as a SIP UA.</t>
-	      <t>The P-Charge-Info header is not used/interpreted by a
-	      regular UA and should not normally be seen
+	      <t>The P-Charge-Info header is ignored by an end-user
+	       UA in and should not normally be seen
 	      by such a UA. If the header is transmitted to such a UA, the UA
 	      SHOULD ignore the header.  Similarly, a regular UA originating 
 	      a SIP message should not insert this header.</t>
@@ -427,15 +384,17 @@
     </section>
 
     <section anchor="acknowledgements" title="Acknowledgements">
-      <t>The authors thank the following people for their comments,
-      criticism, suggestions and assistance: Keith Drage, Miguel Garcia, 
+      <t>The authors thank the following people for their comments: 
+      Keith Drage, Miguel Garcia, 
       Sumit Garg, John Haluska, Juha Heinanen, Christer Holmberg, 
-      Paul Kyzivat, Jonathan Rosenberg, Tom Taylor and Glen Wang.</t>
+      Paul Kyzivat, Jonathan Rosenberg, Henning Schulzrinne, Tom Taylor 
+      and Glen Wang.</t>
     </section>
 
     <section anchor="Changes" title="Changes">
       <t>NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
       publication. Thank you.</t>
+      <t>Revision -02 incorporates a range of feedback provided by Henning Schulzrinne.</t>
       <t>Revision -01 is a refresh as -00 expired. The affiliation of Tolga 
       Asveren was changed to Ribbon Communications.</t>
       <t>Revision -00 strips out the NPI and NOA parameters to focus only on the
