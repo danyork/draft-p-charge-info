@@ -20,7 +20,7 @@
 <?rfc sortrefs="no" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="info" docName="draft-york-p-charge-info-00" ipr="trust200902">
+<rfc category="info" docName="draft-york-p-charge-info-01" ipr="trust200902">
 
   <!-- ***** FRONT MATTER ***** -->
 
@@ -44,20 +44,20 @@
       </address>
     </author>
     <author fullname="Tolga Asveren" initials="T." surname="Asveren">
-                <organization abbrev="Sonus">Sonus Networks</organization>
+                <organization abbrev="Ribbon Communications">Ribbon Communications</organization>
       <address>
         <postal>
-          <street>3 Paragon Way</street>
-          <city>Freehold</city>
+          <street></street>
+          <city></city>
           <region>NJ</region>
-          <code>07728</code>
+          <code></code>
           <country>USA</country>
         </postal>
-        <email>tasveren@sonusnet.com</email>
+        <email>tasveren@rbbn.com</email>
       </address>
     </author>
     
-    <date year="2017" />
+    <date year="2018" />
 
     <!-- Meta-data Declarations -->
 
@@ -436,6 +436,8 @@
     <section anchor="Changes" title="Changes">
       <t>NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
       publication. Thank you.</t>
+      <t>Revision -01 is a refresh as -00 expired. The affiliation of Tolga 
+      Asveren was changed to Ribbon Communications.</t>
       <t>Revision -00 strips out the NPI and NOA parameters to focus only on the
       usage in a pure SIP-to-SIP environment. Multiple editing changes were made
       for readability.</t>
