@@ -12,8 +12,6 @@
 <!ENTITY RFC3603 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3603.xml">
 <!ENTITY RFC5727 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5727.xml">
 <!ENTITY RFC8217 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8217.xml">
-<!ENTITY RFC8224 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8224.xml">
-<!ENTITY RFC8225 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8225.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <?rfc strict="yes" ?>
@@ -23,12 +21,12 @@
 <?rfc sortrefs="no" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="info" docName="draft-york-p-charge-info-03" ipr="trust200902">
+<rfc category="info" docName="draft-york-p-charge-info-04" ipr="trust200902">
 
   <!-- ***** FRONT MATTER ***** -->
 
   <front>
-      <title abbrev="P-Charge-Info, a SIP Private Header">P-Charge-Info - A Private Header Field (P-Header) Extension to the Session Initiation
+      <title abbrev="P-Charge-Info, a SIP Private Header Field">P-Charge-Info - A Private Header Field (P-Header) Extension to the Session Initiation
       Protocol (SIP)</title>
 
     <author fullname="Dan York" initials="D." surname="York">
@@ -395,11 +393,6 @@
          result in unwanted harassment and even physical harm to the calling party.</t>
        <t>Therefore a SIP entity MUST remove the P-Charge-Info
        header field when it is sent to an untrusted entity.</t>
-       
-       <t>An entity inserting P-Charge-Info header field SHOULD add a new PASSporT 
-       <xref target="RFC8225"/> for signing purposes so that P-Charge-Info value 
-       can be asserted later. An entity stripping off P-Charge-Info MUST remove 
-       the corresponding PASSporT and Identity header fields <xref target="RFC8224"/>.</t>
      
        </section>
        </section>
@@ -416,6 +409,8 @@
     <section anchor="Changes" title="Changes">
       <t>NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
       publication. Thank you.</t>
+      <t>Revision -04 removes the PASSporT and RFC 8224/8225 references (inserted
+      in Revision -03), as it was decided to capture that usage in a separate draft.</t>
       <t>Revision -03 incorporates feedback from the expert review by Adam 
       Roach, including:
         <list style="symbols">
@@ -569,8 +564,6 @@
     &RFC3603;
     &RFC2234;
     &RFC8217;
-    &RFC8224;
-    &RFC8225;
     
     </references>
 
