@@ -11,6 +11,7 @@
 <!ENTITY RFC3455 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3455.xml">
 <!ENTITY RFC3603 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3603.xml">
 <!ENTITY RFC5727 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5727.xml">
+<!ENTITY RFC8174 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY RFC8217 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8217.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -21,7 +22,7 @@
 <?rfc sortrefs="no" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="info" docName="draft-york-p-charge-info-04" ipr="trust200902">
+<rfc category="info" docName="draft-york-p-charge-info-06" ipr="trust200902">
 
   <!-- ***** FRONT MATTER ***** -->
 
@@ -74,9 +75,10 @@
        used to convey billing information about the party to be charged.  
        This P-Header is currently used in production by several equipment 
        vendors and carriers. This document is submitted to request the 
-       registration of this header field with IANA. </t>
+       registration of this header field with the Internet Assigned 
+       Numbers Authority (IANA). </t>
        
-       <t>NOTE: This document is a slimmed-down version of the document
+       <t>NOTE: This document is a simplified version of the document
        previously known as 'draft-york-dispatch-p-charge-info'.</t>
 
     </abstract>
@@ -98,7 +100,7 @@
 	following SIP header fields:<list style="symbols">
 	   <t>P-Asserted-Identity</t>
 	   <t>From (in the absence of P-Asserted-Identity)</t>
-	</list>(NOTE: Some service providers today also use the
+	</list>(NOTE: Some service providers have also used the
 	"Remote-Party-ID" header field but this was replaced by
 	P-Asserted-Identity in <xref target="RFC3325"/>.)</t>
 	<t>This identity/number is typically presented to the receiving user
@@ -123,9 +125,11 @@
     </section>
 
       <section title="Requirements Language">
-        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-        document are to be interpreted as described in RFC 2119.</t>
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+      NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+      "MAY", and "OPTIONAL" in this document are to be interpreted as
+      described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
+      when, and only when, they appear in all capitals, as shown here.</t>
       </section>
 
     <section anchor="Purpose" title="Purpose of this Document">
@@ -146,7 +150,8 @@
     <t>The simplest use case for P-Charge-Info is an enterprise
     environment where each SIP endpoint has a direct number that is passed
     by the enterprise SIP proxy across to a SIP proxy at a SIP service
-    provider who provides PSTN connectivity.  Rather than cause the SIP
+    provider who provides connectivity to the Public Switched Telephone
+    Network (PSTN).  Rather than cause the SIP
     service provider to have to track each individual direct number for
     billing purposes, the enterprise SIP proxy sends in the
     P-Charge-Info header field a single billing identifier that the SIP service
@@ -159,10 +164,10 @@
       geographic area using local market PSTN numbers but with only a very
       few actual PSTN interconnection points.</t>
 
-      <t>The customer may have all local
-      phone numbers yet outgoing calls are actually being routed across a
+      <t>The customers may all have local
+      phone numbers yet outgoing calls are actually routed across a
       SIP network and out specific PSTN gateways or across specific SIP
-      connections to SIP service providers. The hosted provider may want to
+      connections to other SIP service providers. The hosted provider may want to
       pass a billing identifier to its SIP service providers either
       for the purpose of simplicity in billing or to obtain better rates
       from the SIP service providers.</t>
@@ -177,7 +182,7 @@
     and used by the 3GPP to carry information related to
 	the charging of a session. There are, however, some differences 
 	in the semantics associated with P-Charging-Vector and
-	P-Charge-Info.  P-Charging-Vector is mainly used to carry information for 
+	P-Charge-Info. P-Charging-Vector is mainly used to carry information for 
 	correlation of multiple charging records generated for a single session. 
 	On the other hand, P-Charge-Info is used to convey information about 
 	the party to be billed for a call. Furthermore, P-Charging-Vector has 
@@ -309,9 +314,9 @@
        </section>
 
        <section anchor="example" title="Example of Usage">
-       <t>The content of the P-Charge-Info header field is typically simply a SIP URI used
-       as a billing indicator.  As such, an example would be as simple as one of:</t>
-       <t>P-Charge-Info: &lt;sip:+14075551234@example.net; user=phone&gt;</t>
+       <t>The content of the P-Charge-Info header field is typically just a SIP URI used
+       as a billing indicator.  An example could be as simple as one of:</t>
+       <t>P-Charge-Info: &lt;sip:+14075551234@example.net;user=phone&gt;</t>
        <t>P-Charge-Info: &lt;sip:+12349874567@example.com&gt;</t>
        <t>P-Charge-Info: &lt;sips:1234@example.com&gt;</t>
        <t>P-Charge-Info: &lt;tel:+14075551234&gt;</t>
@@ -328,8 +333,8 @@
       a comma, semicolon, or question mark.</t>
       
        <t>The Private Header Field specified in this document is described in
-   both prose and an augmented Backus-Naur Form (BNF) defined in RFC
-   2234.  Further, several BNF definitions are inherited from SIP
+   both prose and an augmented Backus-Naur Form (BNF) defined in 
+   <xref target="RFC2234"/>.  Further, several BNF definitions are inherited from SIP
    and are not repeated here.  Implementors need to be familiar with the
    notation and contents of <xref target="RFC3261"/> and 
    <xref target="RFC2234"/> to understand this
@@ -409,6 +414,9 @@
     <section anchor="Changes" title="Changes">
       <t>NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
       publication. Thank you.</t>
+      <t>Revision -06 fixes one nit and updates the Requirements Language to comply
+      with BCP 14 / RFC 8174.</t>
+      <t>Revision -05 fixed a few typos and had other editorial changes.</t>
       <t>Revision -04 removes the PASSporT and RFC 8224/8225 references (inserted
       in Revision -03), as it was decided to capture that usage in a separate draft.</t>
       <t>Revision -03 incorporates feedback from the expert review by Adam 
@@ -552,17 +560,19 @@
 
     <references title="Normative References">
 
+    &RFC2119;
     &RFC5727;
+    &RFC8174;
 
     </references>
 
     <references title="Informative References">
 
-    &RFC3261;
-    &RFC3455;
-    &RFC3325;
-    &RFC3603;
     &RFC2234;
+    &RFC3261;
+    &RFC3325;
+    &RFC3455;
+    &RFC3603;
     &RFC8217;
     
     </references>
