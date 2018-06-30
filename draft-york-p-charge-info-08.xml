@@ -210,10 +210,12 @@
 	      or application servers
 	      acting as a SIP UA.</t>
 	      <t>The P-Charge-Info header field is ignored by an end-user UA and
-	      should not normally be received by such a UA.  It MUST NOT be sent to
-	      such a UA if the role of the UA is known and the UA SHOULD ignore it if it
-	      receives the header field. Similarly, an end-user UA originating a SIP 
-	      message SHOULD NOT insert this header field.</t>
+	      should not normally be received by such a UA.  It MUST NOT be sent to 
+	      such a UA as this would provide information about party to be charged 
+	      to the UA, which may cause security related issues, e.g. calling party 
+	      information would be known by the UA for an otherwise anonymous call. 
+	      A UA SHOULD ignore it if it receives this header. Similarly, an end-user 
+	      UA originating a SIP message SHOULD NOT insert this header field.</t>
 
               <t>A PSTN gateway or application server acting as a UA MAY use 
 	      the content of the P-Charge-Info header field
