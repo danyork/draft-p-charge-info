@@ -117,6 +117,10 @@
 	<t>Several carriers, application providers, and equipment providers have been 
 	using the P-Charge-Info header field since at least 2007 as a simple 
 	mechanism to exchange this billing identifier.</t>
+	
+	<t>This document specifies the use of the P-Charge-Info header field in
+    INVITE requests. The header field might be useful in other SIP
+    messages, but such use is beyond the scope of this document.</t>
 
 
     </section>
@@ -127,6 +131,8 @@
       "MAY", and "OPTIONAL" in this document are to be interpreted as
       described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
       when, and only when, they appear in all capitals, as shown here.</t>
+      <t>The key words describe requirements needed to interoperate with 
+      existing usage.</t>
       </section>
 
     <section anchor="Purpose" title="Purpose of this Document">
@@ -170,7 +176,210 @@
 
     </section>
 
-    <section anchor="Alternatives" title="Alternatives">
+
+    <section anchor="P-Charge-Info" title="The P-Charge-Info Header">
+
+       <section anchor="applicability" title="Applicability Statement for the P-Charge-Info header field">
+          <t>The P-Charge-Info header field is applicable within a single private
+	  administrative domain or between different administrative domains
+	  where there is a trust relationship between the domains.</t>
+       </section>
+
+       <section anchor="usage" title="Usage of the P-Charge-Info header field">
+         <t>The P-Charge-Info header field is used to convey information about
+	 the identity of the party to be charged.  The P-Charge-Info header field
+	 is typically inserted into a SIP request, usually an INVITE, by one of the following:<list
+	 style="symbols">
+	    <t>the SIP proxy on the originating network;</t>
+	    <t>a PSTN gateway acting as a SIP UA; or</t>
+	    <t>an application server generating billing information.</t>
+	 </list></t>
+
+              <t>P-Charge-Info is to be used by the SIP entity that
+	      provides billing services for a session. This could be an
+	      entity generating billing records or an entity interacting
+	      with another enitity generating billing records. Upon receipt
+	      of an INVITE request with the P-Charge-Info header field, such an
+	      entity MAY use the value present in P-Charge-Info as
+	      indicating the party responsible for the charges associated
+	      with the session. This decision, for example , could be based on 
+	      local policy.</t>
+	      
+            <section anchor="usage-ua" title="Procedures at the UA">
+	      <t>The P-Charge-Info header field may be inserted by PSTN gateways
+	      or application servers
+	      acting as a SIP UA.</t>
+	      <t>The P-Charge-Info header field is ignored by an end-user UA and
+	      should not normally be received by such a UA.  It MUST NOT be sent to
+	      such a UA if the role of the UA is known and the UA SHOULD ignore it if it
+	      receives the header field. Similarly, an end-user UA originating a SIP 
+	      message SHOULD NOT insert this header field.</t>
+
+              <t>A PSTN gateway or application server acting as a UA MAY use 
+	      the content of the P-Charge-Info header field
+	      present in an INVITE request it received for billing related 
+	      procedures, e.g. in a billing record or during interaction with 
+	      another entity generating billing records, as the identity of 
+	      the party to be charged for the session. A PSTN gateway or
+	      application server acting as a UA MAY use 
+	      the content of the P-Charge-Info header field to populate information 
+	      about the identity of the party to charge in another type of 
+	      signaling, e.g. ISUP.</t>
+	    </section>
+	    <section anchor="usage-proxies" title="Procedures at the Proxy">
+	    <t>A SIP proxy that supports this extension and receives a
+	    request, typically a SIP INVITE, MAY insert a P-Charge-Info header field. The contents of the
+	    inserted header field may be decided based on local policy or by
+	    querying an external entity to determine the identity of the
+	    party to be charged.</t>
+            <t>A proxy MAY use the content of the P-Charge-Info header field
+	    present in an INVITE request it received for billing related
+	    procedures, e.g. in a billing record or during interaction with
+	    another entity generating billing records.</t>
+	    <t>A SIP proxy that does not support this extension will pass
+	    any received P-Charge-Info header field unmodified in compliance with
+	    RFC 3261.</t>
+	    <t>A proxy supporting this extension MUST remove the
+	    P-Charge-Info header field before sending a request to a UA that is
+	    not acting as a PSTN gateway or appropriate application server, if the
+	    role of the UA is known.</t>
+	    </section>
+       </section>
+
+       <section anchor="example" title="Example of Usage">
+       <t>The content of the P-Charge-Info header field is typically just a SIP/tel 
+       URI used as a billing indicator.  An example could be as simple as one of:</t>
+       <t>P-Charge-Info: &lt;sip:+14075550134@example.net;user=phone&gt;</t>
+       <t>P-Charge-Info: &lt;sip:+12345550167@example.com&gt;</t>
+       <t>P-Charge-Info: &lt;sips:1234@example.com&gt;</t>
+       <t>P-Charge-Info: &lt;tel:+14075551234&gt;</t>
+       <t>Any other applicable SIP URI could be used.</t>
+       </section>
+
+    </section>
+    <section anchor="formalsyntax" title="Formal Syntax">
+    
+       <t>This RFC contains the definition of one or more SIP header fields
+      that allow choosing between addr-spec and name-addr when
+      constructing header field values. <xref target="RFC8217"/> prohibits the
+      use of addr-spec if its value would contain a comma, semicolon, or 
+      question mark.</t>
+      
+       <t>The Private Header Field specified in this document is described in
+   both prose and an augmented Backus-Naur Form (BNF) defined in 
+   <xref target="RFC5234"/>.  Further, several BNF definitions are inherited from SIP
+   and are not repeated here.  Implementors need to be familiar with the
+   notation and contents of <xref target="RFC3261"/> and 
+   <xref target="RFC5234"/> to understand this
+   document.</t>
+       <t>The syntax of the P-Charge-Info header field is described as follows:</t>
+       <figure><artwork><![CDATA[
+      P-Charge-Info = "P-Charge-Info" HCOLON (name-addr / addr-spec)
+              ; name-addr and addr-spec are specified in RFC 3261
+       ]]></artwork></figure>
+
+    <t>The SIP URI contained in the name-addr/addr-spec is the billing indicator 
+    that is passed between the parties.</t>
+    
+    </section>
+
+    <section anchor="IANA" title="IANA Considerations">
+      <t>This specification registers a new proprietary SIP header
+   field according to the procedures defined in <xref target="RFC5727"/>.</t>
+   
+      <section anchor="Header-Field" title="Header Field">
+      <t>The header field described in Section 7 is registered in the
+      "Header Fields" sub-registry of the "Session Initiation Protocol
+      (SIP) Parameters" registry by adding a row with these values:</t>
+      <t>Header Field Name:  P-Charge-Info</t>
+      <t>Compact Form:  none</t>
+      <t>Reference: [TBD: This document]</t>
+      </section>
+
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+       <section anchor="TrustRelationship" title="Trust Relationship">
+       <t>Given that the information contained in the P-Charge-Info header field
+       will be used for billing purposes, the proxies and other SIP entities
+       that share this information MUST have a trust relationship.</t>
+       <t>If an untrusted entity were inserted between the trusted
+       entities, it could potentially interfere with the billing records
+       for the call.  If the SIP connections are not made over a private
+       network, a mechanism for securing the confidentiality and integrity of
+       the SIP connection MUST be used to protect the information. One
+       such mechanism could be TLS-encryption of the SIP signaling stream.</t>
+       </section>
+       <section anchor="SecurityUntrustedPeers" title="Untrusted Peers">
+       <section anchor="UntrustedPeersIngress" title="Ingress from
+       Untrusted Peers">
+       <t>If the P-Charge-Info header field was accepted by a SIP entity from an
+       untrusted peer, there is the potential for fraud if the untrusted
+       entity sent incorrect information, either inadvertently or
+       maliciously.</t>
+       <t>Therefore a SIP entity MUST remove and ignore the P-Charge-Info
+       header field when it is received from an untrusted entity.</t>
+       </section>
+       <section anchor="UntrustedPeersEgress" title="Egress to
+       Untrusted Peers">
+       <t>If the P-Charge-Info header field was sent by a SIP entity to an
+       untrusted peer, there is the potential exposure of network
+       information that is internal to a trust domain.  For instance, the
+       untrusted entity may learn the identities of public SIP proxies used
+       within the trust domain which could then potentially be directly
+       attacked.</t>
+         <t>If an implementation does not strip P-Charge-Info from the message 
+         where specified in this document, it introduces serious privacy risks. 
+         Examples include revealing third-party billing relationships that might 
+         be sensitive, as well as unmasking the identity of callers who wish to 
+         remain anonymous. Depending on circumstances, the latter case may 
+         result in unwanted harassment and even physical harm to the calling party.</t>
+       <t>Therefore a SIP entity MUST remove the P-Charge-Info
+       header field when it is sent to an untrusted entity.</t>
+     
+       </section>
+       </section>
+    </section>
+
+    <section anchor="acknowledgements" title="Acknowledgements">
+      <t>The authors thank the following people for their comments: 
+      Keith Drage, Miguel Garcia, 
+      Sumit Garg, John Haluska, Juha Heinanen, Christer Holmberg, 
+      Paul Kyzivat, Adam Roach, Jonathan Rosenberg, Henning Schulzrinne, 
+      Tom Taylor and Glen Wang.</t>
+    </section>
+    
+
+
+
+ 
+  </middle>
+  
+
+  <!--  *****BACK MATTER ***** -->
+
+  <back>
+
+    <references title="Normative References">
+
+    &RFC2119;
+    &RFC3261;
+    &RFC5727;
+    &RFC8174;
+    &RFC8217;
+
+    </references>
+
+    <references title="Informative References">
+
+    &RFC5234;
+    &RFC3325;
+    &RFC5503;
+    &RFC7315;
+    
+    </references>
+
+    <section anchor="appendixa" title="Alternatives">
 
       <section anchor="P-Charging-Vector" title="P-Charging-Vector">
 
@@ -242,180 +451,16 @@
 
     </section>
 
-    <section anchor="P-Charge-Info" title="The P-Charge-Info Header">
-
-       <section anchor="applicability" title="Applicability Statement for the P-Charge-Info header field">
-          <t>The P-Charge-Info header field is applicable within a single private
-	  administrative domain or between different administrative domains
-	  where there is a trust relationship between the domains.</t>
-       </section>
-
-       <section anchor="usage" title="Usage of the P-Charge-Info header field">
-         <t>The P-Charge-Info header field is used to convey information about
-	 the identity of the party to be charged.  The P-Charge-Info header field
-	 is typically inserted into a SIP request, usually an INVITE, by one of the following:<list
-	 style="symbols">
-	    <t>the SIP proxy on the originating network;</t>
-	    <t>a PSTN gateway acting as a SIP UA; or</t>
-	    <t>an application server generating billing information.</t>
-	 </list></t>
-
-              <t>P-Charge-Info is to be used by the SIP entity that
-	      provides billing services for a session. This could be an
-	      entity generating billing records or an entity interacting
-	      with another enitity generating billing records. Upon receipt
-	      of an INVITE request with the P-Charge-Info header field, such an
-	      entity SHOULD use the value present in P-Charge-Info as
-	      indicating the party responsible for the charges associated
-	      with the session.</t>
-	      
-            <section anchor="usage-ua" title="Procedures at the UA">
-	      <t>The P-Charge-Info header field may be inserted by PSTN gateways
-	      or application servers
-	      acting as a SIP UA.</t>
-	      <t>The P-Charge-Info header field is ignored by an end-user
-	       UA and should not normally be received
-	      by such a UA. It MUST NOT be sent to such a UA and the UA SHOULD 
-	      ignore it if it receives the header field.  Similarly, an end-user UA
-	      originating a SIP message SHOULD NOT insert this header field.</t>
-
-              <t>A PSTN gateway or application server acting as a UA MAY use 
-	      the content of the P-Charge-Info header field
-	      present in an INVITE request it received for billing related 
-	      procedures, e.g. in a billing record or during interaction with 
-	      another entity generating billing records, as the identity of 
-	      the party to be charged for the session. A PSTN gateway or
-	      application server acting as a UA MAY use 
-	      the content of the P-Charge-Info header field to populate information 
-	      about the identity of the party to charge in another type of 
-	      signaling, e.g. ISUP.</t>
-	    </section>
-	    <section anchor="usage-proxies" title="Procedures at the Proxy">
-	    <t>A SIP proxy that supports this extension and receives a
-	    request, typically a SIP INVITE, without the P-Charge-Info
-	    header field MAY insert a P-Charge-Info header field. The contents of the
-	    inserted header field may be decided based on local policy or by
-	    querying an external entity to determine the identity of the
-	    party to be charged.</t>
-            <t>A proxy MAY use the content of the P-Charge-Info header field
-	    present in an INVITE request it received for billing related
-	    procedures, e.g. in a billing record or during interaction with
-	    another entity generating billing records.</t>
-	    <t>A SIP proxy that does not support this extension will pass
-	    any received P-Charge-Info header field unmodified in compliance with
-	    RFC 3261.</t>
-	    <t>A proxy supporting this extension SHOULD remove the
-	    P-Charge-Info header field before sending a request to a UA that is
-	    not acting as a PSTN gateway or appropriate application server.</t>
-	    </section>
-       </section>
-
-       <section anchor="example" title="Example of Usage">
-       <t>The content of the P-Charge-Info header field is typically just a SIP URI used
-       as a billing indicator.  An example could be as simple as one of:</t>
-       <t>P-Charge-Info: &lt;sip:+14075550134@example.net;user=phone&gt;</t>
-       <t>P-Charge-Info: &lt;sip:+12345550167@example.com&gt;</t>
-       <t>P-Charge-Info: &lt;sips:1234@example.com&gt;</t>
-       <t>P-Charge-Info: &lt;tel:+14075551234&gt;</t>
-       <t>Any other applicable SIP URI could be used.</t>
-       </section>
-
-    </section>
-    <section anchor="formalsyntax" title="Formal Syntax">
-    
-       <t>This RFC contains the definition of one or more SIP header fields
-      that allow choosing between addr-spec and name-addr when
-      constructing header field values. As specified in <xref target="RFC8217"/>,
-      the "addr-spec" form MUST NOT be used if its value would contain
-      a comma, semicolon, or question mark.</t>
-      
-       <t>The Private Header Field specified in this document is described in
-   both prose and an augmented Backus-Naur Form (BNF) defined in 
-   <xref target="RFC5234"/>.  Further, several BNF definitions are inherited from SIP
-   and are not repeated here.  Implementors need to be familiar with the
-   notation and contents of <xref target="RFC3261"/> and 
-   <xref target="RFC5234"/> to understand this
-   document.</t>
-       <t>The syntax of the P-Charge-Info header field is described as follows:</t>
-       <figure><artwork><![CDATA[
-      P-Charge-Info = "P-Charge-Info" HCOLON (name-addr / addr-spec)
-              ; name-addr and addr-spec are specified in RFC 3261
-       ]]></artwork></figure>
-
-    <t>The SIP URI contained in the name-addr/addr-spec is the billing indicator 
-    that is passed between the parties.</t>
-    
-    </section>
-
-    <section anchor="IANA" title="IANA Considerations">
-      <t>This specification registers a new proprietary SIP header
-   field according to the procedures defined in <xref target="RFC5727"/>.</t>
-   
-      <section anchor="Header-Field" title="Header Field">
-      <t>The header field described in Section 7 is registered in the
-      "Header Fields" sub-registry of the "Session Initiation Protocol
-      (SIP) Parameters" registry by adding a row with these values:</t>
-      <t>Header Field Name:  P-Charge-Info</t>
-      <t>Compact Form:  none</t>
-      <t>Reference: [TBD: This document]</t>
-      </section>
-
-    </section>
-
-    <section anchor="Security" title="Security Considerations">
-       <section anchor="TrustRelationship" title="Trust Relationship">
-       <t>Given that the information contained in the P-Charge-Info header field
-       will be used for billing purposes, the proxies and other SIP entities
-       that share this information MUST have a trust relationship.</t>
-       <t>If an untrusted entity were inserted between the trusted
-       entities, it could potentially interfere with the billing records
-       for the call.  If the SIP connections are not made over a private
-       network, a mechanism for securing the confidentiality and integrity of
-       the SIP connection SHOULD be used to protect the information. One
-       such mechanism could be TLS-encryption of the SIP signaling stream.</t>
-       </section>
-       <section anchor="SecurityUntrustedPeers" title="Untrusted Peers">
-       <section anchor="UntrustedPeersIngress" title="Ingress from
-       Untrusted Peers">
-       <t>If the P-Charge-Info header field was accepted by a SIP entity from an
-       untrusted peer, there is the potential for fraud if the untrusted
-       entity sent incorrect information, either inadvertently or
-       maliciously.</t>
-       <t>Therefore a SIP entity MUST remove and ignore the P-Charge-Info
-       header field when it is received from an untrusted entity.</t>
-       </section>
-       <section anchor="UntrustedPeersEgress" title="Egress to
-       Untrusted Peers">
-       <t>If the P-Charge-Info header field was sent by a SIP entity to an
-       untrusted peer, there is the potential exposure of network
-       information that is internal to a trust domain.  For instance, the
-       untrusted entity may learn the identities of public SIP proxies used
-       within the trust domain which could then potentially be directly
-       attacked.</t>
-         <t>If an implementation does not strip P-Charge-Info from the message 
-         where specified in this document, it introduces serious privacy risks. 
-         Examples include revealing third-party billing relationships that might 
-         be sensitive, as well as unmasking the identity of callers who wish to 
-         remain anonymous. Depending on circumstances, the latter case may 
-         result in unwanted harassment and even physical harm to the calling party.</t>
-       <t>Therefore a SIP entity MUST remove the P-Charge-Info
-       header field when it is sent to an untrusted entity.</t>
-     
-       </section>
-       </section>
-    </section>
-
-    <section anchor="acknowledgements" title="Acknowledgements">
-      <t>The authors thank the following people for their comments: 
-      Keith Drage, Miguel Garcia, 
-      Sumit Garg, John Haluska, Juha Heinanen, Christer Holmberg, 
-      Paul Kyzivat, Adam Roach, Jonathan Rosenberg, Henning Schulzrinne, 
-      Tom Taylor and Glen Wang.</t>
-    </section>
-
     <section anchor="Changes" title="Changes">
       <t>NOTE TO RFC EDITOR - Please remove this "Changes" section prior to
       publication. Thank you.</t>
+      <t>Revision -08 incorporates significant feedback from Ben Campbell including:
+       <list style="symbols">
+        <t>Moving section on alternatives to an Appendix;</t>
+        <t>Clarifying some uses of normative language;</t>
+        <t>Moving RFCs 3261 and 8217 to Normative references; and </t>
+        <t>multiple small tweaks to the text.</t>
+      </list></t>
       <t>Revision -07 incorporates significant feedback from Jean Mahoney including:
        <list style="symbols">
         <t>Updating references to obsolete RFCs;</t>
@@ -559,33 +604,8 @@
       minor edits were made.</t>
     </section>
 
- 
-  </middle>
-  
-
-  <!--  *****BACK MATTER ***** -->
-
-  <back>
-
-    <references title="Normative References">
-
-    &RFC2119;
-    &RFC5727;
-    &RFC8174;
-
-    </references>
-
-    <references title="Informative References">
-
-    &RFC5234;
-    &RFC3261;
-    &RFC3325;
-    &RFC5503;
-    &RFC7315;
-    &RFC8217;
-    
-    </references>
 
   </back>
 </rfc>
+
 
