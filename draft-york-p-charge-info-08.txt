@@ -5,13 +5,13 @@
 Internet Engineering Task Force                                  D. York
 Internet-Draft                                                Individual
 Intended status: Informational                                T. Asveren
-Expires: October 21, 2018                          Ribbon Communications
-                                                          April 19, 2018
+Expires: December 31, 2018                         Ribbon Communications
+                                                           June 29, 2018
 
 
    P-Charge-Info - A Private Header Field (P-Header) Extension to the
                    Session Initiation Protocol (SIP)
-                      draft-york-p-charge-info-07
+                      draft-york-p-charge-info-08
 
 Abstract
 
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 21, 2018.
+   This Internet-Draft will expire on December 31, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 1]
+York & Asveren          Expires December 31, 2018               [Page 1]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    to this document.  Code Components extracted from this document must
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 2]
+York & Asveren          Expires December 31, 2018               [Page 2]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    In a typical configuration, the identity of the caller, commonly
@@ -165,9 +165,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 3]
+York & Asveren          Expires December 31, 2018               [Page 3]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
 4.  Use Cases
@@ -221,9 +221,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 4]
+York & Asveren          Expires December 31, 2018               [Page 4]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    Billing-Info is an excellent solution.  However, this ability to
@@ -277,9 +277,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 5]
+York & Asveren          Expires December 31, 2018               [Page 5]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
 6.  The P-Charge-Info Header
@@ -333,9 +333,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 6]
+York & Asveren          Expires December 31, 2018               [Page 6]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    about the identity of the party to charge in another type of
@@ -389,9 +389,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 7]
+York & Asveren          Expires December 31, 2018               [Page 7]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    The Private Header Field specified in this document is described in
@@ -445,9 +445,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 8]
+York & Asveren          Expires December 31, 2018               [Page 8]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
 9.2.  Untrusted Peers
@@ -501,9 +501,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018                [Page 9]
+York & Asveren          Expires December 31, 2018               [Page 9]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    o  Updating IANA considerations section;
@@ -557,9 +557,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018               [Page 10]
+York & Asveren          Expires December 31, 2018              [Page 10]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    Revision -03 is purely a refresh as -02 expired.
@@ -613,9 +613,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018               [Page 11]
+York & Asveren          Expires December 31, 2018              [Page 11]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    Revision -13 has no changes to content and was issued as -12 expired.
@@ -669,9 +669,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018               [Page 12]
+York & Asveren          Expires December 31, 2018              [Page 12]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    o  Updated references to RFC 3427 and RFC 3968 to reference RFC 5727.
@@ -725,9 +725,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018               [Page 13]
+York & Asveren          Expires December 31, 2018              [Page 13]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
 12.  References
@@ -781,9 +781,9 @@ Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
 
 
 
-York & Asveren          Expires October 21, 2018               [Page 14]
+York & Asveren          Expires December 31, 2018              [Page 14]
 
-Internet-Draft  P-Charge-Info, a SIP Private Header Field     April 2018
+Internet-Draft  P-Charge-Info, a SIP Private Header Field      June 2018
 
 
    [RFC8217]  Sparks, R., "Clarifications for When to Use the name-addr
@@ -837,4 +837,4 @@ Authors' Addresses
 
 
 
-York & Asveren          Expires October 21, 2018               [Page 15]
+York & Asveren          Expires December 31, 2018              [Page 15]
