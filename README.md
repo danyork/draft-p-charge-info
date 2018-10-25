@@ -5,3 +5,5 @@ This is a separate repository for the Internet-Draft about the "P-Charge-Info" S
 The history of drafts at the IETF can be found at: https://datatracker.ietf.org/doc/draft-york-p-charge-info/
 
 These files were originally part of a separate git repo at: https://github.com/danyork/internet-drafts-york
+
+October 2018 - This draft is now in the RFC Editor Queue.
